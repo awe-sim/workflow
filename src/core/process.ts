@@ -1,14 +1,14 @@
 import { immerable, produce } from 'immer';
-import { CState } from './states';
-import { CRelease } from './release';
-import { CPartner } from './partner';
+import { State } from './states';
+import { Release } from './release';
+import { Partner } from './partner';
 
-export class CProcess {
+export class Process {
   [immerable] = true;
   readonly id: string;
   readonly name: string;
-  readonly state: CState;
-  constructor(id: string, name: string, state: CState) {
+  readonly state: State;
+  constructor(id: string, name: string, state: State) {
     this.id = id;
     this.name = name;
     this.state = state;
@@ -16,12 +16,12 @@ export class CProcess {
   toString(): string {
     return `${this.id}`
   }
-  setState(state: CState): CProcess {
+  setState(state: State): Process {
     return produce(this, draft => {
       draft.state = state;
     });
   }
-  findPartner(release: CRelease): CPartner | undefined {
+  findPartner(release: Release): Partner | undefined {
     return release.partners.find(partner => partner.hasProcess(this));
   }
 }

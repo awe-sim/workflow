@@ -1,7 +1,7 @@
-import { Release } from './core/Release';
+import { ReleaseComponent } from './components/Release';
 
 function App() {
-  return <Release />
+  return <ReleaseComponent />
 }
 
 export default App
